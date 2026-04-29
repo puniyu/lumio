@@ -1,0 +1,23 @@
+[workspace]
+members = [
+    "crates/*"
+]
+resolver = "2"
+
+[workspace.package]
+authors = ["wuliya <3369906077@qq.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/puniyu/prim"
+repository = "https://github.com/puniyu/prim"
+edition = "2024"
+rust-version = "1.88.0"
+
+[workspace.dependencies]
+
+[profile.release]
+lto = "thin"
+incremental = false
+
+[profile.dev]
+incremental = true
