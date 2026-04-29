@@ -10,3 +10,10 @@ edition.workspace = true
 rust-version.workspace = true
 
 [dependencies]
+prim_common.workspace = true
+
+[target.'cfg(target_os = "linux")'.dependencies]
+skia-safe = { workspace = true, features = ["embed-freetype", "textlayout"] }
+
+[target.'cfg(not(target_os = "linux"))'.dependencies]
+skia-safe = { workspace = true, features = ["textlayout"] }
