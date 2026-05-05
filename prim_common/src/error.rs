@@ -6,4 +6,6 @@ pub enum Error {
     Decode,
     #[error("Encode failed")]
     Encode,
+    #[error("failed to load font: {0}")]
+    Font(String)
 }

@@ -1,0 +1,49 @@
+{
+  "name": "@puniyu/prim",
+  "version": "0.1.0",
+  "description": "组织可复用组件",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "author": "Puniyu",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/puniyu/prim.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "napi-rs",
+    "NAPI",
+    "N-API",
+    "Rust",
+    "node-addon",
+    "node-addon-api"
+  ],
+  "files": [
+    "dist"
+  ],
+  "napi": {
+    "binaryName": "prim",
+    "targets": [
+      "x86_64-pc-windows-msvc",
+      "x86_64-apple-darwin",
+      "x86_64-unknown-linux-gnu",
+      "aarch64-unknown-linux-gnu",
+      "aarch64-apple-darwin"
+    ],
+    "constEnum": false,
+    "dtsHeader": "// powered by prim\n"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "artifacts": "napi artifacts",
+    "build": "napi build --platform --release -p nipaw_node --esm -o dist",
+    "prepublishOnly": "napi prepublish --no-gh-release",
+    "create-npm-dirs": "napi create-npm-dirs"
+  },
+  "devDependencies": {
+    "@napi-rs/cli": "^3.4.1"
+  }
+}

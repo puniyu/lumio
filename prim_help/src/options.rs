@@ -1,18 +1,18 @@
+use bytes::Bytes;
 use skia_safe::Color;
 use std::borrow::Cow;
 
 /// 主题配置
 #[derive(Debug, Clone, Default)]
 pub struct Theme {
-    pub background: Option<Background>,
-    pub title_color: Option<Color>,
+    pub background: Option<Background>
 }
 
 /// 背景类型
 #[derive(Debug, Clone)]
 pub enum Background {
     /// 图片背景
-    Image(Vec<u8>),
+    Image(Bytes),
     /// 纯色背景
     Color(Color),
 }
@@ -28,7 +28,7 @@ impl Default for Background {
 pub struct HelpItem {
     pub name: Cow<'static, str>,
     pub desc: Cow<'static, str>,
-    pub icon: Option<Vec<u8>>,
+    pub icon: Option<Bytes>,
 }
 
 /// 帮助分组
