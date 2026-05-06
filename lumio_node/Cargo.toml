@@ -1,5 +1,5 @@
 [package]
-name = "prim_node"
+name = "lumio_node"
 version = "0.1.0"
 authors.workspace = true
 license.workspace = true
@@ -10,11 +10,15 @@ edition.workspace = true
 rust-version.workspace = true
 publish = false
 
+[lib]
+crate-type = ["cdylib"]
+
 [dependencies]
 napi = "3.8.6"
 napi-derive = "3.5.5"
 
-prim = { workspace = true, features = ["help"] }
+lumio = { version = "0.1.0", path = "../lumio", features = ["help"] }
+skia-safe.workspace = true
 
 [build-dependencies]
 napi-build = "2.3.1"

@@ -1,0 +1,134 @@
+name: release
+on:
+  push:
+    branches:
+      - main
+  pull_request_target:
+  workflow_dispatch:
+
+
+permissions:
+  id-token: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  release:
+    if: "!startsWith(github.head_ref, 'release-please')"
+    runs-on: ubuntu-latest
+    outputs:
+      core: ${{ steps.release-please.outputs['lumio_core--release_created'] }}
+      help: ${{ steps.release-please.outputs['lumio_help--release_created'] }}
+      lumio: ${{ steps.release-please.outputs['lumio--release_created'] }}
+      node: ${{ steps.release-please.outputs['lumio_node--release_created'] }}
+      node_tag_name: ${{ steps.release-please.outputs['lumio_node--tag_name'] }}
+    steps:
+      - name: 获取token
+        uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
+        id: app-token
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - name: 运行 release-please-action
+        id: release-please
+        uses: googleapis/release-please-action@16a9c90856f42705d54a6fda1823352bdc62cf38 # v4.4.0
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          config-file: .release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+
+  publish-lib:
+    runs-on: ubuntu-latest
+    needs: [ release ]
+    if: needs.release.outputs.core == 'true' || needs.release.outputs.help == 'true' || needs.release.outputs.lumio == 'true'
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
+          repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
+
+      - name: 设置 Rust 工具链
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: 设置 Rust 缓存
+        uses: swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5 # v2.8.2
+
+      - name: 发布 lumio_core
+        if: needs.release.outputs.core == 'true'
+        run: cargo publish --package lumio_core
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_API_TOKEN }}
+
+      - name: 发布 lumio_help
+        if: needs.release.outputs.help == 'true'
+        run: cargo publish --package lumio_help
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_API_TOKEN }}
+
+      - name: 发布 lumio
+        if: needs.release.outputs.lumio == 'true'
+        run: cargo publish --package lumio
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_API_TOKEN }}
+
+
+  build:
+    needs: release
+    if: needs.release.outputs.node == 'true'
+    uses: ./.github/workflows/build.yml
+
+  publish-npm:
+    runs-on: ubuntu-latest
+    needs: [ release, build ]
+    steps:
+      - name: 获取token
+        uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
+        id: app-token
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - name: 下载 npm 包
+        uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8.0.0
+        with:
+          name: npm-package
+          path: lumio_node
+
+      - name: 下载构建产物
+        uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8.0.0
+        with:
+          pattern: lumio-node*
+          path: lumio_node/artifacts
+
+      - name: 配置 Nodejs
+        uses: puniyu/setup-node@b9c50839779133cef943c8d834d2655edc708fff # main
+        with:
+          node-version: lts/*
+          pnpm-version: latest
+
+      - name: 发布 npm 包
+        run: |
+          pnpm i -g @napi-rs/cli
+          pnpm config set provenance true
+          pnpm config set registry https://registry.npmjs.org/
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+          pnpm run create-npm-dirs
+          pnpm run artifacts
+          pnpm publish --access public
+        working-directory: lumio_node
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 上传 Release
+        uses: softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b # v2.5.0
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          files: |
+            lumio_node/artifacts/lumio-node-*/*.node
+          tag_name: ${{ needs.release.outputs.node_tag_name }}
+
