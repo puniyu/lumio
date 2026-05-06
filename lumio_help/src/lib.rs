@@ -336,7 +336,7 @@ impl Help {
 				let has_icon = item.icon.as_ref().is_some_and(|v| !v.is_empty());
 				let content_y = card_y + Self::CARD_PADDING;
 
-				let name_x = if has_icon {
+				if has_icon {
 					let icon_rect = Rect::from_xywh(
 						card_x + Self::CARD_PADDING,
 						content_y,
@@ -344,20 +344,22 @@ impl Help {
 						Self::ICON_SIZE,
 					);
 					self.draw_icon(canvas, item.icon.as_deref().unwrap(), icon_rect)?;
+				}
+
+				let name_x = if has_icon {
 					card_x + Self::CARD_PADDING + Self::ICON_SIZE + Self::ICON_TEXT_GAP
 				} else {
 					card_x + Self::CARD_PADDING
 				};
 
-				let name_w = card_width - Self::CARD_PADDING * 2.0;
+				let name_w = card_width - (name_x - card_x) - Self::CARD_PADDING;
 				let name_result = measure.text(&item.name, Self::NAME_FONT_SIZE, name_w);
-				let name_rect_h = name_result.line_count as f32 * Self::NAME_FONT_SIZE;
 
 				self.draw_text(
 					canvas,
 					&item.name,
 					&TextParams {
-						rect: Rect::from_xywh(name_x, content_y, name_w, name_rect_h),
+						rect: Rect::from_xywh(name_x, content_y, name_w, name_result.height),
 						font_size: Self::NAME_FONT_SIZE,
 						color: Self::DEFAULT_TEXT_COLOR,
 						font_family: Self::FONT_FAMILY,
@@ -367,7 +369,8 @@ impl Help {
 				);
 
 				let name_h = name_result.height;
-				let desc_max_h = card_base.height() - Self::CARD_PADDING - name_h - 8.0;
+				let desc_w = card_width - Self::CARD_PADDING * 2.0;
+				let desc_result = measure.text(&item.desc, Self::DESC_FONT_SIZE, desc_w);
 				self.draw_text(
 					canvas,
 					&item.desc,
@@ -375,8 +378,8 @@ impl Help {
 						rect: Rect::from_xywh(
 							card_x + Self::CARD_PADDING,
 							content_y + name_h + 8.0,
-							card_width - Self::CARD_PADDING * 2.0,
-							desc_max_h,
+							desc_w,
+							desc_result.height,
 						),
 						font_size: Self::DESC_FONT_SIZE,
 						color: Self::DEFAULT_DESC_COLOR,

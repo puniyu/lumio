@@ -64,6 +64,7 @@ impl Measure {
 
         let name_w = card_width - card_padding * 2.0 - icon_offset;
         let name = self.text(&item.name, name_font_size, name_w);
+
         let desc = self.text(&item.desc, desc_font_size, card_width - card_padding * 2.0);
 
         let height = (card_padding * 2.0 + name.height + 8.0 + desc.height).max(card_min_height);
@@ -74,4 +75,5 @@ impl Measure {
             line_count: name.line_count + desc.line_count,
         }
     }
+
 }
