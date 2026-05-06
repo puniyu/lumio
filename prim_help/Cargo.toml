@@ -1,6 +1,6 @@
 [package]
 name = "prim_help"
-version = "0.1.0"
+version = "0.2.0"
 description = "帮助页面渲染组件"
 authors.workspace = true
 license.workspace = true
@@ -13,7 +13,7 @@ rust-version.workspace = true
 [dependencies]
 bytes.workspace = true
 
-prim_core = { version = "0.1.0", path = "../prim_core" }
+prim_core = { version = "0.2.0", path = "../prim_core" }
 
 [target.'cfg(target_os = "linux")'.dependencies]
 skia-safe = { workspace = true, features = [
