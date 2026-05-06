@@ -1,7 +1,7 @@
 mod font;
 pub use font::FontManger;
-#[doc(inline)]
-pub use prim_common::Error;
+mod error;
+pub use error::Error;
 
 use bytes::Bytes;
 
