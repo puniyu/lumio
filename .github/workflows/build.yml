@@ -1,0 +1,145 @@
+name: Build Package
+
+on:
+  workflow_call:
+
+env:
+  APP_NAME: lumio
+
+jobs:
+  build_windows:
+    runs-on: ${{ matrix.platform.runner }}
+    strategy:
+      matrix:
+        platform:
+          - runner: windows-latest
+            target: x86_64-pc-windows-msvc
+            label: windows-x86_64
+
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: 设置 rust
+        uses: puniyu/setup-rust@main
+        with:
+          target: ${{ matrix.platform.target }}
+          cache: true
+          prefix-key: ${{ env.APP_NAME }}
+
+      - name: 配置 Nodejs
+        uses: puniyu/setup-node@bc6a83c5c09bd93e10596d6a9938fcfe5841f434 # main
+        with:
+          node-version: lts/*
+          pnpm-version: latest
+
+      - name: 构建
+        run: |
+          pnpm install
+          pnpm build --target ${{ matrix.platform.target }}
+        working-directory: lumio_node
+
+      - name: 上传构建产物
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: "${{ env.APP_NAME }}-node-${{ matrix.platform.label }}"
+          path: |
+            lumio_node/dist/${{ env.APP_NAME }}*.node
+
+  build_macos:
+    runs-on: ${{ matrix.platform.runner }}
+    strategy:
+      matrix:
+        platform:
+          - runner: macos-latest
+            target: x86_64-apple-darwin
+            label: macos-x86_64
+          - runner: macos-latest
+            target: aarch64-apple-darwin
+            label: macos-aarch64
+
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: 设置 rust
+        uses: puniyu/setup-rust@main
+        with:
+          target: ${{ matrix.platform.target }}
+          cache: true
+          prefix-key: ${{ env.APP_NAME }}
+
+      - name: 配置 Nodejs
+        uses: puniyu/setup-node@bc6a83c5c09bd93e10596d6a9938fcfe5841f434 # main
+        with:
+          node-version: lts/*
+          pnpm-version: latest
+
+      - name: 构建
+        run: |
+          pnpm install
+          pnpm build --target ${{ matrix.platform.target }}
+        working-directory: lumio_node
+
+      - name: 上传构建产物
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: "${{ env.APP_NAME }}-node-${{ matrix.platform.label }}"
+          path: |
+            lumio_node/dist/${{ env.APP_NAME }}*.node
+
+  build_linux:
+    runs-on: ${{ matrix.platform.runner }}
+    container: ${{ matrix.platform.container }}
+    strategy:
+      matrix:
+        platform:
+          - runner: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            label: linux-x86_64
+            container: ghcr.io/pragmatrix/rust-skia-linux:latest
+          - runner: ubuntu-24.04-arm
+            target: aarch64-unknown-linux-gnu
+            label: linux-aarch64
+            container: ghcr.io/pragmatrix/rust-skia-linux-arm64:latest
+
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: 设置 rust
+        uses: puniyu/setup-rust@main
+        with:
+          target: ${{ matrix.platform.target }}
+          cache: true
+          prefix-key: ${{ env.APP_NAME }}
+
+      - name: 配置 Nodejs
+        uses: puniyu/setup-node@bc6a83c5c09bd93e10596d6a9938fcfe5841f434 # main
+        with:
+          node-version: lts/*
+          pnpm-version: latest
+
+      - name: 构建
+        run: |
+          pnpm install
+          pnpm build --target ${{ matrix.platform.target }}
+        working-directory: lumio_node
+
+      - name: 上传构建产物
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: "${{ env.APP_NAME }}-node-${{ matrix.platform.label }}"
+          path: |
+            lumio_node/dist/${{ env.APP_NAME }}*.node
+
+
+      - name: 上传npm包
+        if: matrix.platform.label == 'linux-x86_64'
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: "npm-package"
+          path: |
+            lumio_node/dist/index.js
+            lumio_node/dist/index.d.ts
+            lumio_node/package.json
