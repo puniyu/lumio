@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.1.2](https://github.com/puniyu/lumio/compare/lumio-v0.1.1...lumio-v0.1.2) (2026-05-06)
+
+
+### 🔧 其他更新
+
+* **lumio:** Synchronize lumio versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * lumio_core bumped from 0.1.1 to 0.1.2
+    * lumio_help bumped from 0.1.1 to 0.1.2
+
 ## [0.1.1](https://github.com/puniyu/lumio/compare/lumio-v0.1.0...lumio-v0.1.1) (2026-05-06)
 
 
