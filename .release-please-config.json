@@ -1,0 +1,108 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "release-type": "rust",
+  "plugins": [
+    {
+      "type": "cargo-workspace",
+      "updatePeerDependencies": true
+    },
+        {
+      "type": "linked-versions",
+      "groupName": "prim",
+      "components": [
+        "prim",
+        "core",
+        "help",
+        "node"
+      ]
+    }
+  ],
+  "include-component-in-tag": true,
+  "changelog-sections": [
+    {
+      "type": "feat",
+      "section": "✨ 新功能",
+      "hidden": false
+    },
+    {
+      "type": "fix",
+      "section": "🐛 错误修复",
+      "hidden": false
+    },
+    {
+      "type": "perf",
+      "section": "⚡️ 性能优化",
+      "hidden": false
+    },
+    {
+      "type": "revert",
+      "section": "⏪️ 回退提交",
+      "hidden": false
+    },
+    {
+      "type": "docs",
+      "section": "📝 文档更新",
+      "hidden": false
+    },
+    {
+      "type": "style",
+      "section": "🎨 代码样式",
+      "hidden": false
+    },
+    {
+      "type": "chore",
+      "section": "🔧 其他更新",
+      "hidden": false
+    },
+    {
+      "type": "refactor",
+      "section": "♻️ 代码重构",
+      "hidden": false
+    },
+    {
+      "type": "test",
+      "section": "✅ 测试相关",
+      "hidden": false
+    },
+    {
+      "type": "deps",
+      "section": "📦 依赖更新"
+    },
+    {
+      "type": "build",
+      "section": "📦️ 构建系统",
+      "hidden": false
+    },
+    {
+      "type": "ci",
+      "section": "🎡 持续集成",
+      "hidden": false
+    }
+  ],
+  "packages": {
+    "prim": {
+      "release-type": "rust",
+      "component": "prim"
+    },
+    "prim_core": {
+      "release-type": "rust",
+      "component": "core"
+    },
+    "prim_help": {
+      "release-type": "rust",
+      "component": "help"
+    },
+    "prim_node": {
+      "release-type": "rust",
+      "component": "node",
+      "extra-files": [
+        {
+          "type": "json",
+          "path": "package.json",
+          "jsonpath": "$.version"
+        }
+      ]
+    }
+  },
+  "commit-search-depth": 50
+}

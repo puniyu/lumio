@@ -1,6 +1,7 @@
 [package]
 name = "prim_core"
 version = "0.1.0"
+description = "prim 核心库，提供渲染和字体管理基础能力"
 authors.workspace = true
 license.workspace = true
 readme.workspace = true
@@ -11,7 +12,8 @@ rust-version.workspace = true
 include = ["src", "fonts", "Cargo.toml"]
 
 [dependencies]
-prim_common.workspace = true
 bytes.workspace = true
 
 skia-safe = { workspace = true, features = ["textlayout"] }
+
+thiserror = "2.0.18"

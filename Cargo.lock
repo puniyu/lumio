@@ -484,19 +484,12 @@ dependencies = [
 ]
 
 [[package]]
-name = "prim_common"
-version = "0.1.0"
-dependencies = [
- "thiserror",
-]
-
-[[package]]
 name = "prim_core"
 version = "0.1.0"
 dependencies = [
  "bytes",
- "prim_common",
  "puniyu-skia-safe",
+ "thiserror",
 ]
 
 [[package]]
@@ -516,6 +509,7 @@ dependencies = [
  "napi-build",
  "napi-derive",
  "prim",
+ "puniyu-skia-safe",
 ]
 
 [[package]]

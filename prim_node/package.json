@@ -39,11 +39,8 @@
   },
   "scripts": {
     "artifacts": "napi artifacts",
-    "build": "napi build --platform --release -p nipaw_node --esm -o dist",
+    "build": "napi build --platform --release -p prim_node --esm -o dist",
     "prepublishOnly": "napi prepublish --no-gh-release",
     "create-npm-dirs": "napi create-npm-dirs"
-  },
-  "devDependencies": {
-    "@napi-rs/cli": "^3.4.1"
   }
 }

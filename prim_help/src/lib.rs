@@ -173,7 +173,7 @@ impl Help {
 		text: &str,
 		params: &TextParams,
 		font_collection: &FontCollection,
-	) -> (usize, f32) {
+	) {
 		let mut text_style = TextStyle::new();
 		text_style.set_font_size(params.font_size);
 		text_style.set_color(params.color);
@@ -189,7 +189,6 @@ impl Help {
 		let mut paragraph = builder.build();
 		paragraph.layout(params.rect.width());
 		paragraph.paint(canvas, (params.rect.x(), params.rect.y()));
-		(paragraph.line_number(), paragraph.height())
 	}
 
 	fn render(&self) -> Result<Vec<u8>, Error> {
@@ -354,7 +353,7 @@ impl Help {
 				let name_result = measure.text(&item.name, Self::NAME_FONT_SIZE, name_w);
 				let name_rect_h = name_result.line_count as f32 * Self::NAME_FONT_SIZE;
 
-				let (_, name_h) = self.draw_text(
+				self.draw_text(
 					canvas,
 					&item.name,
 					&TextParams {
@@ -367,6 +366,7 @@ impl Help {
 					&font_collection,
 				);
 
+				let name_h = name_result.height;
 				let desc_max_h = card_base.height() - Self::CARD_PADDING - name_h - 8.0;
 				self.draw_text(
 					canvas,

@@ -1,5 +1,5 @@
 [workspace]
-members = ["prim", "prim_core", "prim_common", "prim_help", "prim_node"]
+members = ["prim", "prim_core", "prim_help", "prim_node"]
 resolver = "2"
 
 [workspace.package]
@@ -13,7 +13,6 @@ rust-version = "1.88.0"
 
 [workspace.dependencies]
 prim = { version = "0.1.0", path = "./prim" }
-prim_common = { version = "0.1.0", path = "./prim_common" }
 prim_core = { version = "0.1.0", path = "./prim_core" }
 prim_help = { version = "0.1.0", path = "./prim_help" }
 
