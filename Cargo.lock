@@ -476,7 +476,7 @@ dependencies = [
 
 [[package]]
 name = "prim"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "bytes",
  "prim_core",
@@ -485,7 +485,7 @@ dependencies = [
 
 [[package]]
 name = "prim_core"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "bytes",
  "puniyu-skia-safe",
@@ -494,7 +494,7 @@ dependencies = [
 
 [[package]]
 name = "prim_help"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "bytes",
  "prim_core",
@@ -503,7 +503,7 @@ dependencies = [
 
 [[package]]
 name = "prim_node"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "napi",
  "napi-build",

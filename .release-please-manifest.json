@@ -1,7 +1,7 @@
 {
   "prim_common": "0.1.0",
-  "prim_core": "0.1.0",
-  "prim_help": "0.1.0",
-  "prim": "0.1.0",
-  "prim_node": "0.1.0"
+  "prim_core": "0.2.0",
+  "prim_help": "0.2.0",
+  "prim": "0.2.0",
+  "prim_node": "0.2.0"
 }
