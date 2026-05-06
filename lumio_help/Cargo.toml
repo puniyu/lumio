@@ -1,6 +1,6 @@
 [package]
 name = "lumio_help"
-version = "0.1.0"
+version = "0.1.1"
 description = "帮助页面渲染组件"
 authors.workspace = true
 license.workspace = true
@@ -13,7 +13,7 @@ rust-version.workspace = true
 [dependencies]
 bytes.workspace = true
 
-lumio_core = { version = "0.1.0", path = "../lumio_core" }
+lumio_core = { version = "0.1.1", path = "../lumio_core" }
 
 [target.'cfg(target_os = "linux")'.dependencies]
 skia-safe = { workspace = true, features = [
