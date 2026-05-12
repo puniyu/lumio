@@ -106,7 +106,7 @@ jobs:
           path: lumio_node/artifacts
 
       - name: 配置 Nodejs
-        uses: puniyu/setup-node@6319b57140bf85bc4633de4ef3c036c05ceb6ce8 # main
+        uses: puniyu/setup-node@a4a77d897d47977c3fc3f63d8a7c1166244e3a27 # main
         with:
           node-version: lts/*
           pnpm-version: latest
