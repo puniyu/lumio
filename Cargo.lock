@@ -369,6 +369,14 @@ version = "0.1.2"
 dependencies = [
  "bytes",
  "lumio_core",
+ "lumio_layout",
+ "puniyu-skia-safe",
+]
+
+[[package]]
+name = "lumio_layout"
+version = "0.1.2"
+dependencies = [
  "puniyu-skia-safe",
 ]
 

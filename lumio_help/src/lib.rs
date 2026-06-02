@@ -1,8 +1,7 @@
-mod layout;
-mod measure;
+﻿mod measure;
 mod options;
 
-use layout::{Flex, FlexDirection, FlexItem, FlexWrap};
+use lumio_layout::{Flex, FlexDirection, FlexItem, FlexWrap};
 use measure::Measure;
 
 use bytes::Bytes;
@@ -208,8 +207,6 @@ impl Help {
 			.direction(FlexDirection::Column)
 			.gap(Self::PADDING)
 			.size(Self::WIDTH as f32, f32::MAX);
-
-		// 顶部边距
 		root = root.push(FlexItem::fixed(Self::WIDTH as f32, Self::PADDING));
 
 		if self.options.title.is_some() {
@@ -245,8 +242,6 @@ impl Help {
 				Self::TITLE_FONT_SIZE + Self::PADDING + group_height,
 			));
 		}
-
-		// 底部边距
 		root = root.push(FlexItem::fixed(Self::WIDTH as f32, Self::PADDING));
 
 		let rects = root.compute();
@@ -277,9 +272,7 @@ impl Help {
 			);
 		}
 
-		let mut item_idx = if self.options.title.is_some() { 2 } else { 1 };
-
-		for help_group in &self.options.groups {
+		for (item_idx, help_group) in (if self.options.title.is_some() { 2 } else { 1 }..).zip(self.options.groups.iter()) {
 			let group_rect = rects[item_idx];
 			let group_top = group_rect.y();
 
@@ -390,7 +383,6 @@ impl Help {
 				);
 			}
 
-			item_idx += 1;
 		}
 
 		let image = surface.image_snapshot();
@@ -415,3 +407,4 @@ pub(crate) struct TextParams<'a> {
 	pub font_family: &'a str,
 	pub align: TextAlign,
 }
+

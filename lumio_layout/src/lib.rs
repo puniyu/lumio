@@ -34,10 +34,9 @@ pub enum FlexItem {
     /// 固定尺寸
     Fixed { width: f32, height: f32 },
     /// 可伸缩
-    #[allow(dead_code)]
+
     Flexed { flex: f32, min_height: f32 },
     /// 嵌套 Flex 容器
-    #[allow(dead_code)]
     Container(Flex),
 }
 
@@ -46,12 +45,10 @@ impl FlexItem {
         Self::Fixed { width, height }
     }
 
-    #[allow(dead_code)]
     pub fn flex(flex: f32, min_height: f32) -> Self {
         Self::Flexed { flex, min_height }
     }
 
-    #[allow(dead_code)]
     pub fn container(flex: Flex) -> Self {
         Self::Container(flex)
     }

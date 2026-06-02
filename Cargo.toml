@@ -1,5 +1,5 @@
 [workspace]
-members = ["lumio", "lumio_core", "lumio_help", "lumio_node"]
+members = ["lumio", "lumio_core", "lumio_help", "lumio_layout", "lumio_node"]
 resolver = "2"
 
 [workspace.package]

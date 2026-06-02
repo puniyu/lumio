@@ -12,6 +12,7 @@
       "components": [
         "lumio",
         "core",
+        "layout",
         "help",
         "node"
       ]
@@ -87,6 +88,10 @@
     "lumio_core": {
       "release-type": "rust",
       "component": "core"
+    },
+    "lumio_layout": {
+      "release-type": "rust",
+      "component": "layout"
     },
     "lumio_help": {
       "release-type": "rust",
