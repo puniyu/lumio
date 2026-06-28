@@ -47,7 +47,7 @@ jobs:
     if: needs.release.outputs.core == 'true' || needs.release.outputs.help == 'true' || needs.release.outputs.lumio == 'true'
     steps:
       - name: 检出代码
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
           repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
@@ -106,7 +106,7 @@ jobs:
           path: lumio_node/artifacts
 
       - name: 配置 Nodejs
-        uses: puniyu/setup-node@a4a77d897d47977c3fc3f63d8a7c1166244e3a27 # main
+        uses: puniyu/setup-node@a4a194a6c2313ebd8cfb659546e13f3c11eb5e3c # main
         with:
           node-version: lts/*
           pnpm-version: latest
@@ -124,7 +124,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: 上传 Release
-        uses: softprops/action-gh-release@b4309332981a82ec1c5618f44dd2e27cc8bfbfda # v3.0.0
+        uses: softprops/action-gh-release@718ea10b132b3b2eba29c1007bb80653f286566b # v3.0.1
         with:
           token: ${{ steps.app-token.outputs.token }}
           files: |
