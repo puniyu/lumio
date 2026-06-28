@@ -18,17 +18,17 @@ jobs:
 
     steps:
       - name: 检出仓库
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
 
       - name: 设置 rust
-        uses: puniyu/setup-rust@e041f93003a02f197e5b18e0c2e78d225de3d4d5 # main
+        uses: puniyu/setup-rust@14d1fc9caad52a4498e718f9f7cf83b09500299a # main
         with:
           target: ${{ matrix.platform.target }}
           cache: true
           prefix-key: ${{ env.APP_NAME }}
 
       - name: 配置 Nodejs
-        uses: puniyu/setup-node@a4a77d897d47977c3fc3f63d8a7c1166244e3a27 # main
+        uses: puniyu/setup-node@a4a194a6c2313ebd8cfb659546e13f3c11eb5e3c # main
         with:
           node-version: lts/*
           pnpm-version: latest
@@ -60,17 +60,17 @@ jobs:
 
     steps:
       - name: 检出仓库
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
 
       - name: 设置 rust
-        uses: puniyu/setup-rust@e041f93003a02f197e5b18e0c2e78d225de3d4d5 # main
+        uses: puniyu/setup-rust@14d1fc9caad52a4498e718f9f7cf83b09500299a # main
         with:
           target: ${{ matrix.platform.target }}
           cache: true
           prefix-key: ${{ env.APP_NAME }}
 
       - name: 配置 Nodejs
-        uses: puniyu/setup-node@a4a77d897d47977c3fc3f63d8a7c1166244e3a27 # main
+        uses: puniyu/setup-node@a4a194a6c2313ebd8cfb659546e13f3c11eb5e3c # main
         with:
           node-version: lts/*
           pnpm-version: latest
@@ -105,17 +105,17 @@ jobs:
 
     steps:
       - name: 检出仓库
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
 
       - name: 设置 rust
-        uses: puniyu/setup-rust@e041f93003a02f197e5b18e0c2e78d225de3d4d5 # main
+        uses: puniyu/setup-rust@14d1fc9caad52a4498e718f9f7cf83b09500299a # main
         with:
           target: ${{ matrix.platform.target }}
           cache: true
           prefix-key: ${{ env.APP_NAME }}
 
       - name: 配置 Nodejs
-        uses: puniyu/setup-node@a4a77d897d47977c3fc3f63d8a7c1166244e3a27 # main
+        uses: puniyu/setup-node@a4a194a6c2313ebd8cfb659546e13f3c11eb5e3c # main
         with:
           node-version: lts/*
           pnpm-version: latest
