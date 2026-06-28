@@ -1,4 +1,4 @@
-﻿[package]
+[package]
 name = "lumio_help"
 version = "0.1.2"
 description = "帮助页面渲染组件"
