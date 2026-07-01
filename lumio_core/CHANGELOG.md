@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/puniyu/lumio/compare/core-v0.1.2...core-v0.1.3) (2026-07-01)
+
+
+### 🔧 其他更新
+
+* **core:** Synchronize lumio versions
+
 ## [0.1.2](https://github.com/puniyu/lumio/compare/core-v0.1.1...core-v0.1.2) (2026-05-06)
 
 

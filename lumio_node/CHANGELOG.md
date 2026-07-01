@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.1.3](https://github.com/puniyu/lumio/compare/node-v0.1.2...node-v0.1.3) (2026-07-01)
+
+
+### 🔧 其他更新
+
+* **node:** Synchronize lumio versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * lumio bumped from 0.1.2 to 0.1.3
+
 ## [0.1.2](https://github.com/puniyu/lumio/compare/node-v0.1.1...node-v0.1.2) (2026-05-06)
 
 
