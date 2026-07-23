@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.1.3](https://github.com/puniyu/lumio/compare/help-v0.1.2...help-v0.1.3) (2026-07-23)
+
+
+### ♻️ 代码重构
+
+* 将 Flex 布局引擎从 lumio_help 抽取为独立 lumio_layout crate ([f12b47a](https://github.com/puniyu/lumio/commit/f12b47a600c5e56d9df17797e79e67c844676c6b))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * lumio_core bumped from 0.1.2 to 0.1.3
+    * lumio_layout bumped from 0.1.2 to 0.1.3
+
 ## [0.1.2](https://github.com/puniyu/lumio/compare/help-v0.1.1...help-v0.1.2) (2026-05-06)
 
 
