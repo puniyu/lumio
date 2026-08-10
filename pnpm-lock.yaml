@@ -10,7 +10,7 @@ importers:
     devDependencies:
       '@napi-rs/cli':
         specifier: ^3.6.2
-        version: 3.8.4(@emnapi/runtime@1.11.2)(@types/node@25.6.0)
+        version: 3.8.5(@emnapi/runtime@1.11.2)(@types/node@25.6.0)
       '@types/node':
         specifier: ^25.6.0
         version: 25.6.0
@@ -169,8 +169,8 @@ packages:
       '@types/node':
         optional: true
 
-  '@napi-rs/cli@3.8.4':
-    resolution: {integrity: sha512-/uIzAUHXAMHzzye6+DWdVV6oc3lCRr7ck98UNeW5Gbs+KaxXRztWFmehbz46ufLdTtzjcyZGXOplDHEWh3qxew==}
+  '@napi-rs/cli@3.8.5':
+    resolution: {integrity: sha512-lOFzFYBeBpnFAajFiyu+RWCrh1j7/Ma7I5z87huUIGlUkyE8eYxIfNBuH8KOOxW3lkkUxP7CMcl5Hfq3EjgEkg==}
     engines: {node: ^20.17.0 || ^22.13.0 || >= 23.5.0}
     hasBin: true
     peerDependencies:
@@ -828,7 +828,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.6.0
 
-  '@napi-rs/cli@3.8.4(@emnapi/runtime@1.11.2)(@types/node@25.6.0)':
+  '@napi-rs/cli@3.8.5(@emnapi/runtime@1.11.2)(@types/node@25.6.0)':
     dependencies:
       '@inquirer/prompts': 8.5.2(@types/node@25.6.0)
       '@napi-rs/cross-toolchain': 1.0.3
