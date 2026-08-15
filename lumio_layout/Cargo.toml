@@ -1,6 +1,6 @@
 [package]
 name = "lumio_layout"
-version = "0.1.2"
+version = "0.1.3"
 description = "Flex 布局引擎，将布局逻辑从 lumio_help 中独立出来"
 authors.workspace = true
 license.workspace = true
