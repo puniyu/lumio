@@ -21,14 +21,14 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: 设置 rust
-        uses: puniyu/setup-rust@ec66accca4f9b7e800192165ec7812bad9543380 # main
+        uses: puniyu/setup-rust@c651e1eb71225d9c87a13a374785c99ad5ae8bcd # main
         with:
           target: ${{ matrix.platform.target }}
           cache: true
           prefix-key: ${{ env.APP_NAME }}
 
       - name: 配置 Nodejs
-        uses: puniyu/setup-node@342dbffc32e1f50f8d9660e64bb23102db87570c # main
+        uses: puniyu/setup-node@82edbf1086f651d2110bf167717fcac63d535563 # main
         with:
           node-version: lts/*
           pnpm-version: latest
@@ -63,14 +63,14 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: 设置 rust
-        uses: puniyu/setup-rust@ec66accca4f9b7e800192165ec7812bad9543380 # main
+        uses: puniyu/setup-rust@c651e1eb71225d9c87a13a374785c99ad5ae8bcd # main
         with:
           target: ${{ matrix.platform.target }}
           cache: true
           prefix-key: ${{ env.APP_NAME }}
 
       - name: 配置 Nodejs
-        uses: puniyu/setup-node@342dbffc32e1f50f8d9660e64bb23102db87570c # main
+        uses: puniyu/setup-node@82edbf1086f651d2110bf167717fcac63d535563 # main
         with:
           node-version: lts/*
           pnpm-version: latest
@@ -108,14 +108,14 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: 设置 rust
-        uses: puniyu/setup-rust@ec66accca4f9b7e800192165ec7812bad9543380 # main
+        uses: puniyu/setup-rust@c651e1eb71225d9c87a13a374785c99ad5ae8bcd # main
         with:
           target: ${{ matrix.platform.target }}
           cache: true
           prefix-key: ${{ env.APP_NAME }}
 
       - name: 配置 Nodejs
-        uses: puniyu/setup-node@342dbffc32e1f50f8d9660e64bb23102db87570c # main
+        uses: puniyu/setup-node@82edbf1086f651d2110bf167717fcac63d535563 # main
         with:
           node-version: lts/*
           pnpm-version: latest
